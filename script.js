@@ -322,7 +322,17 @@ function onSubmit(e){
     data = [payload, ...data];
   }
 
-  saveData(data);
+  saveData(data);fetch("https://script.google.com/macros/s/AKfycbxLdf3DA9wwvcIZFht7hNUAna75AojSkFWE3UI0o-TSrkYy3zjJWqWKCB0vzV2uWCx8Nw/exec", {
+  method: "POST",
+  body: JSON.stringify(payload),
+  headers: {
+    "Content-Type": "application/json"
+  }
+})
+.then(res => res.json())
+.then(res => console.log("Enviado para planilha"))
+.catch(err => console.error("Erro ao enviar", err));
+
   closeModal();
   render();
 }
